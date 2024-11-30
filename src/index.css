@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.card {
+  @apply relative float-left w-[29%] h-0 m-[2%] pb-[20%];
+}
+.card__container {
+  @apply fixed overflow-x-hidden overflow-y-auto w-full h-full left-0 top-0;
+  -webkit-transform: translate3d(0, 0, 0); /* prevents flicker */
+  -webkit-overflow-scrolling: touch;
+}
+.card__container--closed {
+  @apply absolute overflow-hidden;
+}
+.card__image {
+  @apply relative block h-full max-h-[500px] -translate-x-2/4 left-2/4;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+.card__container--closed .card__image {
+  @apply cursor-pointer;
+}
+.card__content {
+  @apply relative w-full h-auto text-[#888] mx-auto my-0 pt-[30px] pb-[22px] px-10;
+  background: #fff;
+}
+.card__container--closed .card__content {
+  @apply pointer-events-none mt-0 px-4 py-[5px];
+  background: transparent;
+}
+.card__caption {
+  @apply text-[2em] max-w-[900px] mx-auto my-0 pt-[35px] pb-0 px-[30px];
+}
+.card__container--closed .card__caption {
+  @apply text-[1em] max-w-none -translate-y-full px-2.5 py-[30px];
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+}
+.card__title {
+  @apply text-[1.5em] leading-none text-[#3b393d] mt-[5px] mb-0 mx-0;
+}
+.card__container--closed .card__title {
+  @apply text-white;
+}
+.card__subtitle {
+  @apply text-[0.95em] leading-none text-[#777778] mt-[5px] mb-0 mx-0;
+}
+.card__container--closed .card__subtitle {
+  @apply text-neutral-100;
+}
+.card__copy {
+  @apply text-[1.25em] max-w-[900px] text-[#3b393d] mx-auto my-0 pt-[25px] pb-[100px] px-[30px];
+}
+.card__copy p:first-of-type {
+  @apply text-[1.5em] pt-0 pb-[1em] px-0;
+}
+.card__btn-close {
+  @apply text-lg absolute cursor-pointer p-9 right-0 top-0;
+}
+.card__container--closed .card__btn-close {
+  @apply hidden;
+}
+.meta {
+  @apply text-[0.85em] flex items-center pt-0 pb-[35px] px-0;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+}
+.card__container--closed .meta {
+  @apply invisible;
+}
+.meta__avatar {
+  @apply rounded-[50%];
+}
+.meta__author {
+  @apply font-[bold] px-[15px] py-0;
+}
+.meta__date {
+  @apply ml-auto mr-0 my-0;
+}
+@media only screen and (max-width: 980px) {
+  .card {
+    @apply w-[46%] pb-[32.2%];
+  }
+  .card__image {
+    @apply h-screen;
+    aspect-ratio: 16 / 3;
+  }
+  .card__content {
+    @apply mb-0 px-5;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .card {
+    @apply w-[96%] pb-[67.2%];
+  }
+}
+@media only screen and (max-width: 400px) {
+  .card__caption {
+    @apply text-[1.25em] pt-[35px] pb-0 px-0;
+  }
+  .meta {
+    @apply pt-0 pb-[25px] px-0;
+  }
+  .card__copy {
+    @apply text-[90%] pt-[25px] pb-[100px] px-0;
+  }
+}
+
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+/* PATTERN */
+.pattern {
+  @apply fixed z-[-1] w-full h-full left-0 top-0;
+}
+.pattern--hidden {
+  @apply invisible opacity-0;
+}
+.pattern--hidden .polygon {
+  @apply duration-[0ms];
+}
+.pattern svg {
+  @apply w-full h-full;
+}
+.polygon {
+  @apply origin-[center_bottom] fill-transparent scale-100;
+  transition: -webkit-transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  -webkit-transform: scale(1);
+  -webkit-transform-origin: center bottom;
+}
+.polygon--hidden {
+  @apply opacity-0 scale-0;
+  -webkit-transform: scale(0);
+}
+/* disable scale on firefox */
+.ff .polygon {
+  @apply scale-100;
+  -webkit-transform: scale(1) !important;
+}
+
